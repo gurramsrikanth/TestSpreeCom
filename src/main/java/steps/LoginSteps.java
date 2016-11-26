@@ -28,10 +28,14 @@ public class LoginSteps {
         homePageObj.clickOnLoginLink();
         loginPageObj.setLoginEmail(loginId);
         loginPageObj.setLoginPassword(password);
-        loginPageObj.submitLoginForm();
-        homePageObj.clickOnMyAccountLink();
-        String userEmail = accountPageObj.getUserEmail();
-        return userEmail;
+        String status = loginPageObj.submitLoginForm();
+        if(status.equals("success")){
+            homePageObj.clickOnMyAccountLink();
+            String userEmail = accountPageObj.getUserEmail();
+            return userEmail;
+        }else{
+            return status;
+        }
     }
 
     public void Logout(){

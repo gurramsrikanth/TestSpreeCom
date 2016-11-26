@@ -20,6 +20,9 @@ public class LoginPage {
     @FindBy(how = How.LINK_TEXT, using = "Forgot Password?")
     WebElement forgot_password_link;
 
+    @FindBy(how = How.XPATH, using = ".//*[@id='content']/div[1]")
+    WebElement login_error_text;
+
     // Set Email
     public void setLoginEmail(String email){
         login_email.sendKeys(email);
@@ -30,8 +33,16 @@ public class LoginPage {
     }
 
     // Submit the form to login
-    public void submitLoginForm(){
+    public String submitLoginForm(){
         login_pwd.submit();
+
+        if(login_error_text.isDisplayed() &&
+                login_error_text.getText().equals("Invalid email or password.")){
+            return "Invalid email or password.";
+        }else{
+            return "success";
+        }
+
     }
 
     // click on new user link
