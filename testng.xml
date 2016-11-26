@@ -5,6 +5,7 @@
     <test name="Regression">
         <classes>
             <class name="login.LoginTest"/>
+            <class name="home.ShopByLinksTest"/>
         </classes>
     </test>
 </suite>

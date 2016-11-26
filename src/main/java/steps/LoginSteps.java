@@ -16,11 +16,11 @@ public class LoginSteps {
     AccountPage accountPageObj = PageFactory.initElements(DriverManager.driver, AccountPage.class);
 
     /**
-     * Click on Login link in the Home page
+     * Click on Login link in the home page
      * Set Login ID (email)
      * Set Login Pwd
      * Submit the login form
-     * Click on My Account in the Home Page
+     * Click on My Account in the home Page
      * Get user email from My Account page
      * return the email
      * */
