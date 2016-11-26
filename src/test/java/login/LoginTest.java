@@ -17,15 +17,15 @@ public class LoginTest {
         DriverManager manager = new DriverManager();
     }
 
-    @AfterSuite
-    public void tearDown(){
-        DriverManager.driver.quit();
-    }
 
     @Test
     public void testLogin(){
         LoginSteps loginSteps = new LoginSteps();
         String userName = loginSteps.Login("xt@xt.com","xt@xt123");
         Assert.assertEquals(userName,"xt@xt.com (Edit)","User email mismatched");
+    }
+
+    public void testLogout(){
+
     }
 }

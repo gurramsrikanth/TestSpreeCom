@@ -11,6 +11,9 @@ public class HomePage {
     @FindBy(how = How.LINK_TEXT,using = "LOGIN")
     WebElement login_link;
 
+    @FindBy(how = How.LINK_TEXT,using = "LOGOUT")
+    WebElement logout_link;
+
     @FindBy(how = How.LINK_TEXT, using = "MY ACCOUNT")
     WebElement my_account_link;
 
@@ -22,4 +25,7 @@ public class HomePage {
         my_account_link.click();
     }
 
+    public void clickOnLogoutLink(){
+        logout_link.click();
+    }
 }

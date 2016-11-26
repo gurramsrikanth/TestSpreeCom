@@ -11,6 +11,9 @@ import util.DriverManager;
  * Created by srikanth on 25/11/16.
  */
 public class LoginSteps {
+    HomePage homePageObj = PageFactory.initElements(DriverManager.driver, HomePage.class);
+    LoginPage loginPageObj = PageFactory.initElements(DriverManager.driver, LoginPage.class);
+    AccountPage accountPageObj = PageFactory.initElements(DriverManager.driver, AccountPage.class);
 
     /**
      * Click on Login link in the Home page
@@ -22,10 +25,6 @@ public class LoginSteps {
      * return the email
      * */
     public String Login(String loginId, String password){
-        HomePage homePageObj = PageFactory.initElements(DriverManager.driver, HomePage.class);
-        LoginPage loginPageObj = PageFactory.initElements(DriverManager.driver, LoginPage.class);
-        AccountPage accountPageObj = PageFactory.initElements(DriverManager.driver, AccountPage.class);
-
         homePageObj.clickOnLoginLink();
         loginPageObj.setLoginEmail(loginId);
         loginPageObj.setLoginPassword(password);
@@ -33,5 +32,9 @@ public class LoginSteps {
         homePageObj.clickOnMyAccountLink();
         String userEmail = accountPageObj.getUserEmail();
         return userEmail;
+    }
+
+    public void Logout(){
+        homePageObj.clickOnLogoutLink();
     }
 }
