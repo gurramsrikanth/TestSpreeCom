@@ -34,6 +34,7 @@ public class LoginSteps {
             String userEmail = accountPageObj.getUserEmail();
             return userEmail;
         }else{
+            loginPageObj.clickOnHomeLink();
             return status;
         }
     }

@@ -11,11 +11,22 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverManager {
     public static WebDriver driver;
     String baseUrl = "http://localhost:3000";
+
     public DriverManager(){
-        System.setProperty("webdriver.chrome.driver","driver//chromedriver");
-        driver = new ChromeDriver();
-//        System.setProperty("webdriver.gecko.driver","//home//srikanth//Downloads//softwares//drivers//geckodriver");
-//        driver = new FirefoxDriver();
+        String propFile = "testSetup.properties";
+        PropertyFileManager propManager = new PropertyFileManager();
+        String browserName = propManager.readProperty(propFile,"browser");
+        String driverPath = System.getProperty("user.dir")+"/"+propManager.readProperty(propFile,"driver_path");
+
+        if(browserName.equalsIgnoreCase("chrome")){
+            System.setProperty("webdriver.chrome.driver",driverPath);
+            driver = new ChromeDriver();
+        }else if(browserName.equalsIgnoreCase("firefox")){
+            System.setProperty("webdriver.gecko.driver",driverPath);
+            driver = new FirefoxDriver();
+        }else{
+            System.out.println("Invalid Browser");
+        }
         driver.get(baseUrl);
     }
 }

@@ -23,6 +23,9 @@ public class LoginPage {
     @FindBy(how = How.XPATH, using = ".//*[@id='content']/div[1]")
     WebElement login_error_text;
 
+    @FindBy(how = How.ID, using = "home-link")
+    WebElement home_link;
+
     // Set Email
     public void setLoginEmail(String email){
         login_email.sendKeys(email);
@@ -42,7 +45,6 @@ public class LoginPage {
         }else{
             return "success";
         }
-
     }
 
     // click on new user link
@@ -55,4 +57,7 @@ public class LoginPage {
         forgot_password_link.click();
     }
 
+    public void clickOnHomeLink(){
+        home_link.click();
+    }
 }

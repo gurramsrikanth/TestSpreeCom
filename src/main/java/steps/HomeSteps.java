@@ -14,8 +14,14 @@ public class HomeSteps {
         return homePageObj.getAllCategories();
     }
 
-    public String[] getBrands(){
-        return homePageObj.getAllBrands();
+    public String[][] getCategoryLinksAndPageTitles(){
+        homePageObj.clickOnHomeLink();
+        return homePageObj.getCategoryLinksAndTitles();
+    }
+
+    public String[][] getBrandLinksAndPageTitles(){
+        homePageObj.clickOnHomeLink();
+        return homePageObj.getAllBrandLinksAndTitles();
     }
 
 }
