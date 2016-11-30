@@ -2,17 +2,10 @@ package login;
 
 import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import steps.LoginSteps;
-import util.DriverManager;
-import util.ExcelFileManager;
-import util.Log;
-import util.PropertyFileManager;
-
-import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Properties;
+import util.*;
 
 /**
  * Created by srikanth on 25/11/16.
@@ -82,6 +75,13 @@ public class LoginTest {
         LoginSteps loginSteps = new LoginSteps();
         String accountName = loginSteps.Login(userName, password);
         Assert.assertEquals(accountName.equals("Invalid email or password."), true);
+    }
+
+    @AfterMethod
+    public void tearDown(ITestResult result){
+        if(ITestResult.FAILURE  == result.getStatus()){
+            ScreenshotCapturer.captureScreenshot(DriverManager.driver, result.getMethod().getMethodName());
+        }
     }
 
 }
