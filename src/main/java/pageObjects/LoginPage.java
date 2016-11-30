@@ -3,6 +3,7 @@ package pageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import util.Log;
 
 /**
  * Created by srikanth on 25/11/16.
@@ -28,15 +29,18 @@ public class LoginPage {
 
     // Set Email
     public void setLoginEmail(String email){
+        Log.info("Found email field");
         login_email.sendKeys(email);
     }
     // Set Password
     public void setLoginPassword(String pwd){
+        Log.info("Found password field");
         login_pwd.sendKeys(pwd);
     }
 
     // Submit the form to login
     public String submitLoginForm(){
+        Log.info("clicking on Sign in button");
         login_pwd.submit();
 
         if(login_error_text.isDisplayed() &&

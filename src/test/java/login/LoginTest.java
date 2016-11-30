@@ -1,10 +1,12 @@
 package login;
 
+import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import steps.LoginSteps;
 import util.DriverManager;
 import util.ExcelFileManager;
+import util.Log;
 import util.PropertyFileManager;
 
 import java.io.*;
@@ -25,11 +27,22 @@ public class LoginTest {
         String browserName = propManager.readProperty(propFile,"browser");
 
         DriverManager manager = new DriverManager();
+        DOMConfigurator.configure("log4j.xml");
     }
 
     @AfterSuite
     public void tearDown(){
         DriverManager.driver.quit();
+    }
+
+    @BeforeTest
+    public void TestInit(){
+        Log.startTestCase("Login_Test");
+    }
+
+    @AfterTest
+    public void TestClose(){
+        Log.endTestCase("Login_Test");
     }
 
     @DataProvider(name = "validLogin")
@@ -52,7 +65,8 @@ public class LoginTest {
         return data;
     }
 
-    @Test(dataProvider = "validLogin")
+    @Test(dataProvider = "validLogin", description = "Verify login with valid credentails",
+            groups = { "group2" })
     public void verifyWithValidLoginData(String userName, String password){
         LoginSteps loginSteps = new LoginSteps();
         String accountName = loginSteps.Login(userName, password);
@@ -61,7 +75,9 @@ public class LoginTest {
         loginSteps.Logout();
     }
 
-    @Test(dataProvider = "inValidLogin")
+    @Test(dataProvider = "inValidLogin", description = "Verify login with invalid credentials",
+            groups = { "group1" })
+
     public void verifyWithInValidLoginData(String userName, String password){
         LoginSteps loginSteps = new LoginSteps();
         String accountName = loginSteps.Login(userName, password);

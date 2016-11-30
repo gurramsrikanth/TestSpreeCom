@@ -35,14 +35,14 @@ public class ShopByLinksTest {
         };
     }
 
-    @Test
+    @Test(description = "Verify all the links under shop by Category",groups = { "group2" })
     public void verifyShopByCategoryLinks(){
         String [][] linksPageTitles = categoryPageTitles();
         String [][] categories = homeSteps.getCategoryLinksAndPageTitles();
         Assert.assertTrue(Arrays.equals(categories,linksPageTitles));
     }
 
-    @Test
+    @Test(description = "Verify all the links under shop by Brand",groups = { "group2" })
     public void verifyShopByBrandLinks(){
         String[][] brandPageTitles = brandPageTitles();
         String [][] brands = homeSteps.getBrandLinksAndPageTitles();

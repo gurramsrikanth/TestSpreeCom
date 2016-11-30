@@ -6,6 +6,7 @@ import pageObjects.AccountPage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 import util.DriverManager;
+import util.Log;
 
 /**
  * Created by srikanth on 25/11/16.
@@ -25,10 +26,15 @@ public class LoginSteps {
      * return the email
      * */
     public String Login(String loginId, String password){
+        Log.info("Click on login link");
         homePageObj.clickOnLoginLink();
+        Log.info("set Login ID field");
         loginPageObj.setLoginEmail(loginId);
+        Log.info("Set password field");
         loginPageObj.setLoginPassword(password);
+        Log.info("Sign IN");
         String status = loginPageObj.submitLoginForm();
+        Log.info("Check login is successful");
         if(status.equals("success")){
             homePageObj.clickOnMyAccountLink();
             String userEmail = accountPageObj.getUserEmail();

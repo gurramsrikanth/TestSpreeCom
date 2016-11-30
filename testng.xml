@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Spree E2E Tests" verbose="1" >
+    <listeners>
+        <listener class-name="util.Listner" />
+        <listener class-name="util.Reporter" />
+    </listeners>
     <parameter name="browser" value="chrome"></parameter>
     <test name="Regression">
         <classes>

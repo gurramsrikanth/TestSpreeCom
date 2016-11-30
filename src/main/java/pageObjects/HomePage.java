@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import util.Log;
 
 import java.util.List;
 
@@ -33,14 +34,17 @@ public class HomePage {
 
     public void clickOnLoginLink(){
         login_link.click();
+        Log.info("Clicked on Login link");
     }
 
     public void clickOnMyAccountLink(){
         my_account_link.click();
+        Log.info("Clicked on MyAccount link");
     }
 
     public void clickOnLogoutLink(){
         logout_link.click();
+        Log.info("Logged out");
     }
 
     //get all the category names
@@ -52,6 +56,7 @@ public class HomePage {
             categories[counter] = link.getText();
             counter += 1;
         }
+        Log.info("Categories found are: "+categories.toString());
         return categories;
     }
 
@@ -72,6 +77,7 @@ public class HomePage {
             categoryLinksAndTitles[counter][1] = driver.getTitle();
             counter += 1;
         }
+
         return categoryLinksAndTitles;
     }
 
